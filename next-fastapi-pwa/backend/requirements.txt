@@ -1,0 +1,6 @@
+fastapi>=0.115,<1
+uvicorn[standard]>=0.34,<1
+psycopg[binary]>=3.2,<4
+debugpy>=1.8,<2
+pytest>=8,<10
+httpx>=0.28,<1

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="description" content="Ứng dụng công việc hỗ trợ offline và đồng bộ với FastAPI." />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/icon-192.png" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+  <title>Todo Sync Lab</title>
+</head>
+<body>
+<main>
+  <header><h1>Todo Sync Lab</h1><span id="connection-status" role="status" aria-live="polite" class="badge checking">● Đang kiểm tra kết nối…</span></header>
+  <section class="stats">
+    <div><b id="task-count">0</b> Công việc</div>
+    <div><b id="queue-count">0</b> Chờ đồng bộ</div>
+    <div><b id="conflict-count">0</b> Xung đột</div>
+    <button id="sync-button" data-lock>↻ Đồng bộ ngay</button>
+  </section>
+  <p id="error" role="alert" class="error" hidden></p>
+  <div class="columns">
+    <section>
+      <h2>Thiết bị này</h2>
+      <form id="task-form">
+        <input id="task-input" aria-label="Công việc mới" placeholder="Nhập công việc mới" required maxlength="200" />
+        <button data-lock>Thêm</button>
+      </form>
+      <p id="empty-state" class="muted">Chưa có công việc.</p>
+      <div id="task-list"></div>
+      <small id="last-sync">Đồng bộ gần nhất: chưa có</small>
+    </section>
+    <section>
+      <h2>Trên máy chủ</h2>
+      <p id="server-seen" class="muted"></p>
+      <button id="refresh-server">Làm mới</button>
+      <div class="table"><table>
+        <thead><tr><th>Nội dung</th><th>Version</th><th>Trạng thái</th></tr></thead>
+        <tbody id="server-tasks"></tbody>
+      </table></div>
+      <a id="api-docs" target="_blank" rel="noreferrer">Mở Swagger / thử API ↗</a>
+    </section>
+  </div>
+  <section id="conflicts" class="conflicts" role="alert" hidden>
+    <h2>Xung đột đồng bộ</h2><div id="conflict-list"></div>
+  </section>
+  <div class="columns">
+    <section><h2>Hàng đợi đồng bộ</h2><pre id="outbox">[]</pre></section>
+    <section><h2>Nhật ký đồng bộ</h2><pre id="sync-log">Đang khởi động…</pre></section>
+  </div>
+</main>
+<template id="task-template">
+  <article>
+    <div class="task"><input type="checkbox" aria-label="Hoàn thành" data-action="toggle" data-lock /><strong></strong></div>
+    <small></small>
+    <div class="actions"><button data-action="edit" data-lock>Sửa</button><button data-action="delete" data-lock>Xóa</button></div>
+  </article>
+</template>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

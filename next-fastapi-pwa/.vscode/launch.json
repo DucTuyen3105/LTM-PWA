@@ -1,0 +1,7 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {"name": "FastAPI in Docker", "type": "debugpy", "request": "attach", "connect": {"host": "localhost", "port": 5678}, "pathMappings": [{"localRoot": "${workspaceFolder}/backend", "remoteRoot": "/app"}], "justMyCode": true},
+    {"name": "Frontend JavaScript", "type": "pwa-chrome", "request": "launch", "url": "http://localhost:3000", "webRoot": "${workspaceFolder}/frontend"}
+  ]
+}
